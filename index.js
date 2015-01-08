@@ -30,7 +30,7 @@ module.exports = function(options) {
       };
 
       db.push(reqData);
-      console.log(db);
+      console.log(reqData);
     }
 
     onFinished(res, logRequest)
