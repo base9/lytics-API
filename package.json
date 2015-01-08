@@ -1,0 +1,19 @@
+{
+  "name": "lytics",
+  "version": "0.1.0",
+  "description": "Analyses server performance ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lytics",
+    "analytics",
+    "server",
+    "monitoring",
+    "api",
+    "monitoring"
+  ],
+  "author": "Ashmeet Sidhu <ashmeet.sidhu7@gmail.com> (http://ashsidhu.com)",
+  "license": "ISC"
+}
