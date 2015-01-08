@@ -15,5 +15,8 @@
     "monitoring"
   ],
   "author": "Ashmeet Sidhu <ashmeet.sidhu7@gmail.com> (http://ashsidhu.com)",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.10.7"
+  }
 }
