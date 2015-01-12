@@ -1,5 +1,7 @@
-var onFinished = require('on-finished')
-var 
+var onFinished = require('on-finished');
+var Request    = require('./db.js');
+// var Promise    = require('bluebird');
+
 module.exports = function(options) {
 
   // wont need this, can handle in midw stack
@@ -10,8 +12,7 @@ module.exports = function(options) {
     res.sendStatus(200);
   });
 
-  var db = [];
-
+  // var db = [];
 
   return function (req, res, next) {
     req._startAt = process.hrtime();
@@ -19,23 +20,28 @@ module.exports = function(options) {
     req._remoteAddress = getIp(req);
 
     function logRequest() {
-      var reqData = {
+      var request = new Request({
         url: req.url,
         method: req.method,
         requestTime: req._startTime,
-        duration: process.hrtime(req._startAt),
-        ip: getIp(req),
+        duration: getElapsedInMs(req._startAt),
+        ip: "" + getIp(req),
         body: req.body,
         query: req.query
-      };
+      })
+      .save(function(err) {
+        if (err) return console.error(err);
+      });
 
-      db.push(reqData);
-      console.log(reqData);
     }
 
     onFinished(res, logRequest);
-
     next();
+  }
+
+  function getElapsedInMs(hrTime) {
+    var elapsedHrTime = process.hrtime(hrTime);
+    return elapsedHrTime[0] * 1e9 + elapsedHrTime[1];
   }
 
   function getIp(req) {

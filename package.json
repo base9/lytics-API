@@ -20,6 +20,7 @@
     "express": "^4.10.7"
   },
   "dependencies": {
+    "mongoose": "^3.8.21",
     "on-finished": "^2.2.0"
   }
 }
