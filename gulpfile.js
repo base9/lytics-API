@@ -4,6 +4,8 @@ var nodemon = require('gulp-nodemon');
 var jshint  = require('gulp-jshint');
 var jade    = require('gulp-jade');
 var stylus  = require('gulp-stylus');
+var wiredep = require('wiredep').stream;
+
 
 var path = {
 
@@ -18,6 +20,16 @@ gulp.task('lint', function() {
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
+
+gulp.task('wiredepBower', function () {
+  gulp.src('./client/index.html')
+    .pipe(wiredep({
+      directory: './bower_components',
+      bowerJson: require('./bower.json')
+    }))
+    .pipe(gulp.dest('./dist'));
+});
+
 
 gulp.task('templates', function() {
   gulp.src('./lib/*.jade')

@@ -1,11 +1,12 @@
+var path = require('path');
 var Request = require('./request.model');
-
 var express = require('express');
 var app = express();
 
-app.use('/', function (req, res, next) {
-  res.sendStatus(200);
-});
+var rootPath = path.normalize(__dirname + '/..');
+
+app.use('/bower_components', express.static(path.join(rootPath, '/bower_components')));
+app.use(express.static(path.join(rootPath, '/client')));
 
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
