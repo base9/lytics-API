@@ -1,14 +1,14 @@
 var onFinished = require('on-finished')
-
+var 
 module.exports = function(options) {
 
   // wont need this, can handle in midw stack
-  // var app = options.app;
+  var app = options.app;
 
-  // app.get('/lytics', function(req, res, next) {
-  //   // code for sending lytics dashboard to client
-  //   res.sendStatus(200);
-  // });
+  app.get('/lytics', function(req, res, next) {
+    // code for sending lytics dashboard to client
+    res.sendStatus(200);
+  });
 
   var db = [];
 
@@ -17,7 +17,7 @@ module.exports = function(options) {
     req._startAt = process.hrtime();
     req._startTime = new Date;
     req._remoteAddress = getIp(req);
-    
+
     function logRequest() {
       var reqData = {
         url: req.url,
@@ -33,7 +33,8 @@ module.exports = function(options) {
       console.log(reqData);
     }
 
-    onFinished(res, logRequest)
+    onFinished(res, logRequest);
+
     next();
   }
 

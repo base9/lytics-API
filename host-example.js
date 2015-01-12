@@ -8,7 +8,10 @@ var lytics = require('./');
 var app = express();
 
 // step 2: use middleware returned by lytics
-app.use(lytics());
+app.use(lytics({
+  app: app,
+  db: ''
+}));
 
 app.use(function(req, res) {
   res.send(200);
