@@ -17,11 +17,18 @@
   "author": "Ashmeet Sidhu <ashmeet.sidhu7@gmail.com> (http://ashsidhu.com)",
   "license": "ISC",
   "devDependencies": {
-    "express": "^4.10.7"
+    "express": "^4.10.7",
+    "gulp": "^3.8.10",
+    "gulp-jade": "^0.10.0",
+    "gulp-jshint": "^1.9.0",
+    "gulp-nodemon": "^1.0.5",
+    "gulp-stylus": "^1.3.6",
+    "gulp-util": "^3.0.2"
   },
   "dependencies": {
     "jade": "^1.8.2",
     "mongoose": "^3.8.21",
+    "nib": "^1.0.4",
     "on-finished": "^2.2.0"
   }
 }
