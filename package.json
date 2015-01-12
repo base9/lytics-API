@@ -26,9 +26,12 @@
     "gulp-util": "^3.0.2"
   },
   "dependencies": {
+    "express": "^4.10.7",
     "jade": "^1.8.2",
     "mongoose": "^3.8.21",
     "nib": "^1.0.4",
-    "on-finished": "^2.2.0"
+    "on-finished": "^2.2.0",
+    "socket.io": "^1.2.1",
+    "socket.io-client": "^1.2.1"
   }
 }

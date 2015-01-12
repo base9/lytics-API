@@ -14,9 +14,9 @@ app.use(lytics({
 }));
 
 app.use(function(req, res) {
-  res.send(200);
+  res.sendStatus(200);
 });
 
-app.listen(5151, function() {
-  console.log("Now listening to post 5151");
+app.listen(8000, function() {
+  console.log("Now listening to port 8000");
 });

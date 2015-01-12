@@ -1,19 +1,13 @@
 var onFinished = require('on-finished');
-var Request    = require('./db.js');
-// var Promise    = require('bluebird');
+
+// sets up lyticsServer listening on 5151
+var lyticsServer = require('./server/server');
+
+// set up  socket from host app to 5151
+var socketClient = require('./host/socket');
 
 module.exports = function(options) {
 
-  // var app = options.app;
-
-  // app.get('/lytics', function(req, res, next) {
-  //   // code for sending lytics dashboard to client
-  //   res.status(200).sendFile('./index.html');
-  // });
-
-  
-
-  // var db = [];
 
   return function (req, res, next) {
     req._startAt = process.hrtime();
@@ -21,7 +15,7 @@ module.exports = function(options) {
     req._remoteAddress = getIp(req);
 
     function logRequest() {
-      var request = new Request({
+      var requestData = {
         url: req.url,
         method: req.method,
         requestTime: req._startTime,
@@ -29,11 +23,9 @@ module.exports = function(options) {
         ip: "" + getIp(req),
         body: req.body,
         query: req.query
-      })
-      .save(function(err) {
-        if (err) return console.error(err);
-      });
+      };
 
+      socketClient.emit('request:log', requestData);
     }
 
     onFinished(res, logRequest);
