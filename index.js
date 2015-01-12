@@ -4,13 +4,14 @@ var Request    = require('./db.js');
 
 module.exports = function(options) {
 
-  // wont need this, can handle in midw stack
-  var app = options.app;
+  // var app = options.app;
 
-  app.get('/lytics', function(req, res, next) {
-    // code for sending lytics dashboard to client
-    res.sendStatus(200);
-  });
+  // app.get('/lytics', function(req, res, next) {
+  //   // code for sending lytics dashboard to client
+  //   res.status(200).sendFile('./index.html');
+  // });
+
+  
 
   // var db = [];
 
