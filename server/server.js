@@ -22,8 +22,9 @@ host.on('connection', function(socket){
   });
 });
 
+
 client.on('connection', function(socket) {
-  console.log()
+  console.log('client connected to lytics');
 })
 
 server.listen(5151, function () {
@@ -32,9 +33,10 @@ server.listen(5151, function () {
 
 function logRequest (request) {
   request = new Request(request);
+  client.emit('request:log', request);
+  
   request.save(function(err){
     if (err) throw err;
     console.log('lytics reporting', request);
-    // client.emit()
   })
 }
