@@ -35,4 +35,4 @@ gulp.watch('watch', function() {
   gulpwatch(path._____, ['lint']);
 });
 
-gulp.task('default', ['lint', 'watch']);
+gulp.task('default', ['lint', 'templates', 'one', 'watch']);
