@@ -15,6 +15,9 @@ module.exports = function(options) {
     req._remoteAddress = getIp(req);
 
     function logRequest() {
+      console.log("REQ", typeof req.query);
+      console.log("BODY", req.body);
+      var stringifiedQuery = JSON.stringify(req.query);
       var requestData = {
         url: req.url,
         method: req.method,
@@ -22,7 +25,7 @@ module.exports = function(options) {
         duration: getElapsedInMs(req._startAt),
         ip: "" + getIp(req),
         body: req.body,
-        query: req.query
+        query: stringifiedQuery
       };
 
       socketClient.emit('request:log', requestData);

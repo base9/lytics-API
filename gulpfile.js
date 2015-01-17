@@ -3,20 +3,28 @@ var gutil   = require('gulp-util');
 var nodemon = require('gulp-nodemon');
 var jshint  = require('gulp-jshint');
 var jade    = require('gulp-jade');
-var stylus  = require('gulp-stylus');
+var sass    = require('gulp-sass');
 var wiredep = require('wiredep').stream;
 
 
 var path = {
-
+  jsFiles: './**/*.js',
+  sassFiles: './client/scss/*.scss',
+  cssRoot: './client/css'
 };
 
 gulp.task('test', function() {
   console.log('hello');
 });
 
+gulp.task('sass', function() {
+  return gulp.src(path.sassFiles)
+    .pipe(sass())
+    .pipe(gulp.dest(path.cssRoot))
+});
+
 gulp.task('lint', function() {
-  return gulp.src([path._____])
+  return gulp.src(jsFiles)
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });

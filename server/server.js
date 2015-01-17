@@ -5,7 +5,6 @@ var app = express();
 
 var rootPath = path.normalize(__dirname + '/..');
 
-app.use('/bower_components', express.static(path.join(rootPath, '/bower_components')));
 app.use(express.static(path.join(rootPath, '/client')));
 
 var server = require('http').createServer(app);
