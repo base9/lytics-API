@@ -1,15 +1,29 @@
-var mongoose = require('mongoose');
+var knex = require('knex');
 
-mongoose.connect('mongodb://localhost/lytics');
+module.exports = Client;
 
-var RequestSchema = new mongoose.Schema({
-  url: String,
-  method: String,
-  requestTime: Date,
-  duration: Number,
-  ip: String,
-  body: String, //if this does not work, then try stringifying 
-  query: String
+var db = knex({
+  client: 'pg',
+  connection: process.env.DATABASE_URL || 'postgres://localhost:5151/nodelytics-API'
 });
 
-module.exports = mongoose.model("Request", RequestSchema);
+db.schema.hasTable('client').then(function(exists) {
+  if (!exists) {
+    db.schema.createTable('client', function(server) {
+      server.string('url', 255);
+      server.string('method', 255);
+      server.timestamp('requestTime');
+      server.bigInteger('duration');
+      server.string('ip');
+      server.string('body');
+      server.string('query');
+    }).then(function() {
+      console.log('Created new client table');
+    });
+  }
+});
+
+var Client = bookshelf(db).Model.extend({
+  tableName: 'client',
+  hasTimestamps: true
+});

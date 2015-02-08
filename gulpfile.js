@@ -10,7 +10,9 @@ var wiredep = require('wiredep').stream;
 var path = {
   jsFiles: './**/*.js',
   sassFiles: './client/scss/*.scss',
-  cssRoot: './client/css'
+  cssRoot: './client/css',
+  jadeFiles: './client/templates/*.jade',
+  htmlRoot: './client/html'
 };
 
 gulp.task('test', function() {
@@ -18,7 +20,7 @@ gulp.task('test', function() {
 });
 
 gulp.task('sass', function() {
-  return gulp.src(path.sassFiles)
+  gulp.src(path.sassFiles)
     .pipe(sass())
     .pipe(gulp.dest(path.cssRoot))
 });
